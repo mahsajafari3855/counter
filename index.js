@@ -1,27 +1,18 @@
-
-const incrimentn = document.querySelector("#incriment");
-const decrimentn = document.querySelector("#decriment");
-const resetn = document.querySelector("#reset");
+const buttons = document.querySelectorAll(".btn");
 const counterValue = document.querySelector("p span");
  
 let count = 0;
 
-function decriment() {
-    count--
+buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const classList = btn.classList;
+        if (classList.contains("incriment")) count++
+        else if (classList.contains("decriment")) count--
+        else count = 0;
+        if (count > 0) counterValue.style.color = "green";
+        else counterValue.style.color = "red";
         counterValue.textContent = count;
 
-}
-function incriment() {
-    count++;
-    counterValue.textContent = count;
-}
- 
-function reset() {
-    count = 0
-    counterValue.textContent = count;
-}
-incrimentn.addEventListener("click", incriment);
-resetn.addEventListener("click", reset);
-decrimentn.addEventListener("click", decriment);
-
-
+        
+    })
+})
